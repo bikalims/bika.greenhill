@@ -37,6 +37,14 @@
       post_handler=".setuphandlers.uninstall"
       />
 
+  <genericsetup:importStep
+    name="bika.greenhill.setup_handler"
+    title="BIKA GREENHILL: Setup Handler"
+    description="Run various configuration actions"
+    handler=".setuphandlers.setup_handler">
+    <depends name="typeinfo"/>
+  </genericsetup:importStep>
+
   <utility
       factory=".setuphandlers.HiddenProfiles"
       name="bika.greenhill-hiddenprofiles"

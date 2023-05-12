@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="bika.greenhill">
+
+<include package="bika.lims" file="permissions.zcml" />
+
+<browser:page
+    for="bika.greenhill.interfaces.IEnvironmentalConditions"
+    name="view"
+    class=".environmentalconditions.EnvironmentalConditionsView"
+    permission="senaite.core.permissions.ManageBika"
+    layer="bika.greenhill.interfaces.IBikaGreenhillLayer"/>
+
+<browser:page
+    for="bika.greenhill.interfaces.IFacilities"
+    name="view"
+    class=".facilities.FacilitiesView"
+    permission="senaite.core.permissions.ManageBika"
+    layer="bika.greenhill.interfaces.IBikaGreenhillLayer"/>
+
+</configure>

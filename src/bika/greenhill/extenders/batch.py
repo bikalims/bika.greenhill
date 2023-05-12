@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from Products.Archetypes.atapi import MultiSelectionWidget,TextAreaWidget,StringWidget,SelectionWidget
+from Products.Archetypes.atapi import StringWidget,SelectionWidget
 from Products.Archetypes.Widget import BooleanWidget
 from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender, ISchemaExtender
 from zope.component import adapts
 from zope.interface import implementer
 
-from bika.lims.browser.widgets import AddressWidget
-from bika.lims.browser.fields import AddressField
-from .fields import ExtBooleanField, ExtTextField, ExtStringField, ExtLinesField
+from senaite.core.api import geo
+from bika.lims.browser.widgets import ReferenceWidget
+from .fields import ExtBooleanField, ExtStringField, ExtUIDReferenceField
 from bika.lims.interfaces import IBatch
 from bika.greenhill import _
 from bika.greenhill.interfaces import IBikaGreenhillLayer
@@ -23,15 +23,16 @@ container_number_field = ExtStringField(
     )
 )
 
-# country_of_origin_field = AddressField(
-#     "CountryOfOrigin",
-#     widget=AddressWidget(
-#         label=_("Country of Origin"),
-#     ),
-#     subfield_validators={
-#         "country": "inline_field_validator",
-#     },
-# )
+country_of_origin_field = ExtStringField(
+    'CountryOfOrigin',
+    vocabulary='getCountries',
+    default='',
+    widget=SelectionWidget(
+        label=_("Country of origin"),
+        description=_("The country where the samples come from"),
+        format='select',
+    )
+)
 
 removal_permit_number_field = ExtStringField(
     'RemovalPermit',
@@ -39,6 +40,30 @@ removal_permit_number_field = ExtStringField(
     widget=StringWidget(
         label=_("Removal permit number"),
         description=_('Permit to release container consignment'),
+    )
+)
+
+facility_number_field = ExtUIDReferenceField(
+    'Facility',
+    allowed_types=('Facility',),
+    mode="rw",
+    widget=ReferenceWidget(
+        label=_("Facility number"),
+        description=_("Identification number for exporting facility"),
+        catalog_name='portal_catalog',
+        base_query={"is_active": True,
+                    "sort_on": "sortable_title",
+                    "sort_order": "ascending"},
+        showOn=True,
+        colModel=[
+            {"columnName": "Title", "width": "30", "label": _(
+                "Title"), "align": "left"},
+            {"columnName": "number", "width": "20", "label": _(
+                "Number"), "align": "left"},
+            {"columnName": "Description", "width": "50", "label": _(
+                "Description"), "align": "left"},
+        ],
+        ui_item="number",
     )
 )
 
@@ -76,8 +101,9 @@ class BatchSchemaExtender(object):
 
     fields = [
         container_number_field,
-        # country_of_origin_field,
+        country_of_origin_field,
         removal_permit_number_field,
+        facility_number_field,
         dalrrd_number_field,
         seal_number_field,
         seal_intact_field,
@@ -91,3 +117,8 @@ class BatchSchemaExtender(object):
 
     def getFields(self):
         return self.fields
+
+    # def getCountries(self):
+    #     items = geo.get_countries()
+    #     items = map(lambda country: (country.alpha_2, country.name), items)
+    #     return items

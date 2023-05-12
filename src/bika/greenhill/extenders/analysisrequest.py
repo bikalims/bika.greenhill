@@ -1,33 +1,36 @@
 # -*- coding: utf-8 -*-
 
-from Products.Archetypes.atapi import StringWidget
 from Products.CMFCore.permissions import View
 from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
 from archetypes.schemaextender.interfaces import ISchemaExtender
 from zope.component import adapts
 from zope.interface import implementer
 
-from bika.lims.permissions import FieldEditEnvironmentalConditions
-from .fields import ExtStringField
+from .fields import ExtUIDReferenceField
 from bika.lims.interfaces import IAnalysisRequest
+from bika.lims.browser.widgets import ReferenceWidget
 from bika.greenhill import _
 from bika.greenhill.interfaces import IBikaGreenhillLayer
 
-
-environmental_condition_field = ExtStringField(
-    'EnvironmentalConditions',
+environmental_condition_field = ExtUIDReferenceField(
+    'EnvironmentalCondition',
+    allowed_types=('EnvironmentalCondition',),
     mode="rw",
     read_permission=View,
-    write_permission=FieldEditEnvironmentalConditions,
-    widget=StringWidget(
+    widget=ReferenceWidget(
         label=_("Environmental conditions"),
         description=_("The environmental condition during sampling"),
+        size=20,
+        render_own_label=True,
         visible={
             'add': 'edit',
-            'header_table': 'prominent',
+            'secondary': 'disabled',
         },
-        render_own_label=True,
-        size=20,
+        catalog_name='portal_catalog',
+        base_query={"is_active": True,
+                    "sort_on": "sortable_title",
+                    "sort_order": "ascending"},
+        showOn=True,
     ),
 )
 
