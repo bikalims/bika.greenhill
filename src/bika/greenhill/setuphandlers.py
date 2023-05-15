@@ -32,9 +32,6 @@ def add_senaite_setup_items(portal):
     """Adds setup items to the new SENAITE setup
     """
     items = [
-        ("environmental_conditions",  # ID
-         "Environmental Conditions",  # Title
-         "EnvironmentalConditions"),  # FTI
         ("facilites",  # ID
          "Facilities",  # Title
          "Facilities"),  # FTI

@@ -11,14 +11,6 @@ class IBikaGreenhill(Interface):
     """Marker interface for bika greenhill
     """
 
-class IEnvironmentalConditions(Interface):
-    """Marker interface for Environmental Conditions
-    """
-
-class IEnvironmentalCondition(Interface):
-    """Marker interface for Environmental Condition
-    """
-
 class IFacilities(Interface):
     """Marker interface for Facilities
     """

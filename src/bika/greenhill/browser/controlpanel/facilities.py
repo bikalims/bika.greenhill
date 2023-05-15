@@ -50,7 +50,7 @@ class FacilitiesView(ListingView):
 
         self.icon = "{}/{}".format(
             self.portal_url,
-            "/++resource++bika.lims.images/samplecondition_big.png"
+            "/++resource++bika.lims.images/client_big.png"
         )
 
         self.show_select_row = False
