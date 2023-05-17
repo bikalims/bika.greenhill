@@ -25,7 +25,7 @@ container_number_field = ExtStringField(
 
 country_of_origin_field = ExtStringField(
     'CountryOfOrigin',
-    vocabulary='getCountries',
+    vocabulary=map(lambda country: (country.alpha_2, country.name), geo.get_countries()),
     default='',
     widget=SelectionWidget(
         label=_("Country of origin"),
@@ -117,8 +117,3 @@ class BatchSchemaExtender(object):
 
     def getFields(self):
         return self.fields
-
-    # def getCountries(self):
-    #     items = geo.get_countries()
-    #     items = map(lambda country: (country.alpha_2, country.name), items)
-    #     return items
