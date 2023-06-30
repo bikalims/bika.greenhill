@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="bika.greenhill">
+
+  <monkey:patch
+    description="Include Location get_client_info"
+    class="bika.lims.browser.analysisrequest.add2.ajaxAnalysisRequestAddView"
+    original="get_client_info"
+    ignoreOriginal="True"
+    replacement=".analysisrequest.get_client_info" />
+
+  <monkey:patch
+    description="Include location info get_sampletype_info"
+    class="bika.lims.browser.analysisrequest.add2.ajaxAnalysisRequestAddView"
+    original="get_sampletype_info"
+    ignoreOriginal="True"
+    replacement=".analysisrequest.get_sampletype_info" />
+
+  <monkey:patch
+    description="Get Flush Settings"
+    class="bika.lims.browser.analysisrequest.add2.ajaxAnalysisRequestAddView"
+    original="ajax_get_flush_settings"
+    ignoreOriginal="True"
+    replacement=".analysisrequest.ajax_get_flush_settings" />
+
+</configure>
+
