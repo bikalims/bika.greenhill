@@ -23,6 +23,7 @@ from Products.Archetypes import public
 from senaite.core.browser.fields.datetime import DateTimeField
 from senaite.core.browser.fields.record import RecordField
 from senaite.core.browser.fields.records import RecordsField
+from bika.lims.browser.fields import UIDReferenceField
 from zope.interface import implements
 from zope.site.hooks import getSite
 
@@ -120,4 +121,8 @@ class ExtStringField(ExtensionField, public.StringField):
 
 
 class ExtTextField(ExtensionField, public.TextField):
+    "Field extender"
+
+
+class ExtUIDReferenceField(ExtensionField, UIDReferenceField):
     "Field extender"

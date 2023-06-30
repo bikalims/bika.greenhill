@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from Products.Archetypes.atapi import MultiSelectionWidget,TextAreaWidget,StringWidget,SelectionWidget
+from Products.Archetypes.atapi import StringWidget, SelectionWidget
 from Products.Archetypes.Widget import BooleanWidget
-from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender, ISchemaExtender
+from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
+from archetypes.schemaextender.interfaces import ISchemaExtender
 from zope.component import adapts
 from zope.interface import implementer
 
-from bika.lims.browser.widgets import AddressWidget
-from bika.lims.browser.fields import AddressField
-from .fields import ExtBooleanField, ExtTextField, ExtStringField, ExtLinesField
+from senaite.core.api import geo
+from .fields import ExtBooleanField, ExtStringField
 from bika.lims.interfaces import IBatch
 from bika.greenhill import _
 from bika.greenhill.interfaces import IBikaGreenhillLayer
@@ -23,15 +23,17 @@ container_number_field = ExtStringField(
     )
 )
 
-# country_of_origin_field = AddressField(
-#     "CountryOfOrigin",
-#     widget=AddressWidget(
-#         label=_("Country of Origin"),
-#     ),
-#     subfield_validators={
-#         "country": "inline_field_validator",
-#     },
-# )
+country_of_origin_field = ExtStringField(
+    'CountryOfOrigin',
+    vocabulary=map(
+        lambda country: (country.alpha_2, country.name), geo.get_countries()),
+    default='',
+    widget=SelectionWidget(
+        label=_("Country of origin"),
+        description=_("The country where the samples come from"),
+        format='select',
+    )
+)
 
 removal_permit_number_field = ExtStringField(
     'RemovalPermit',
@@ -39,6 +41,14 @@ removal_permit_number_field = ExtStringField(
     widget=StringWidget(
         label=_("Removal permit number"),
         description=_('Permit to release container consignment'),
+    )
+)
+
+facility_number_field = ExtStringField(
+    'Facility',
+    widget=StringWidget(
+        label=_("Facility number"),
+        description=_("Identification number for exporting facility"),
     )
 )
 
@@ -55,7 +65,7 @@ seal_number_field = ExtStringField(
     'SealNumber',
     required=0,
     widget=StringWidget(
-        label=_("Seal number'"),
+        label=_("Seal number"),
         description=_('Batch containers seal number'),
     )
 )
@@ -69,6 +79,7 @@ seal_intact_field = ExtBooleanField(
     ),
 )
 
+
 @implementer(ISchemaExtender, IBrowserLayerAwareExtender)
 class BatchSchemaExtender(object):
     adapts(IBatch)
@@ -76,8 +87,9 @@ class BatchSchemaExtender(object):
 
     fields = [
         container_number_field,
-        # country_of_origin_field,
+        country_of_origin_field,
         removal_permit_number_field,
+        facility_number_field,
         dalrrd_number_field,
         seal_number_field,
         seal_intact_field,

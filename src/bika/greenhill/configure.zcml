@@ -14,16 +14,17 @@
   <!--<includeDependencies package="." />-->
 
   <include package=".browser" />
-
   <include package=".extenders" />
+  <include package=".upgrade" />
+  <include package=".monkey" />
 
   <include file="permissions.zcml" />
 
   <genericsetup:registerProfile
       name="default"
-      title="bika.greenhill"
+      title="BIKA GREENHILL"
       directory="profiles/default"
-      description="Installs the bika.greenhill add-on."
+      description="Installs the BIKA GREENHILL add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.post_install"
       />
@@ -36,6 +37,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.uninstall"
       />
+
+  <genericsetup:importStep
+    name="bika.greenhill.setup_handler"
+    title="BIKA GREENHILL: Setup Handler"
+    description="Run various configuration actions"
+    handler=".setuphandlers.setup_handler">
+    <depends name="typeinfo"/>
+  </genericsetup:importStep>
 
   <utility
       factory=".setuphandlers.HiddenProfiles"

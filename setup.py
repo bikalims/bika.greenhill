@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='bika.greenhill',
-    version='1.0a1',
+    version='1.0.1',
     description="SENAITE LIMS GreenHill add-on",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
@@ -29,14 +29,13 @@ setup(
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
-    keywords='Python Plone CMS',
+    keywords='Python Plone BIKA',
     author='Lunga Baliwe',
     author_email='lunga001@gmail.com',
-    url='https://github.com/collective/bika.greenhill',
+    url='https://github.com/bikalims/bika.greenhill',
     project_urls={
-        'PyPI': 'https://pypi.python.org/pypi/bika.greenhill',
-        'Source': 'https://github.com/collective/bika.greenhill',
-        'Tracker': 'https://github.com/collective/bika.greenhill/issues',
+        'Source': 'https://github.com/bikalims/bika.greenhill',
+        'Tracker': 'https://github.com/bikalims/bika.greenhill/issues',
         # 'Documentation': 'https://bika.greenhill.readthedocs.io/en/latest/',
     },
     license='GPL version 2',

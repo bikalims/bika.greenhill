@@ -12,8 +12,4 @@
           provides="archetypes.schemaextender.interfaces.ISchemaExtender"
           factory=".method.MethodSchemaExtender"/>
 
-  <adapter name='bika.greenhill'
-          provides="archetypes.schemaextender.interfaces.ISchemaExtender"
-          factory=".analysisrequest.AnalysisRequestSchemaExtender"/>
-
 </configure>
