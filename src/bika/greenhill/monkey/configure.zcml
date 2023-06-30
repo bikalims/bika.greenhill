@@ -4,13 +4,6 @@
     i18n_domain="bika.greenhill">
 
   <monkey:patch
-    description="Include Location get_client_info"
-    class="bika.lims.browser.analysisrequest.add2.ajaxAnalysisRequestAddView"
-    original="get_client_info"
-    ignoreOriginal="True"
-    replacement=".analysisrequest.get_client_info" />
-
-  <monkey:patch
     description="Include location info get_sampletype_info"
     class="bika.lims.browser.analysisrequest.add2.ajaxAnalysisRequestAddView"
     original="get_sampletype_info"
