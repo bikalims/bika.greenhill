@@ -52,5 +52,29 @@
       />
 
   <!-- -*- extra stuff goes here -*- -->
+  <!-- Report resource directory -->
+  <plone:static
+      directory="reports"
+      type="senaite.impress.reports"/>
+
+  <!-- View for Single Reports -->
+  <!--
+  <adapter
+      for="zope.interface.Interface
+           bika.greenhill.interfaces.IBikaGreenhill"
+      name="AnalysisRequest"
+      factory=".reportview.SingleReportView"
+      provides="senaite.impress.interfaces.IReportView"
+      permission="zope2.View"/>
+      -->
+
+  <!-- View for Multi Reports -->
+  <adapter
+      for="zope.interface.Interface
+           bika.greenhill.interfaces.IBikaGreenhillLayer"
+      name="AnalysisRequest"
+      factory=".reportview.MultiReportView"
+      provides="senaite.impress.interfaces.IMultiReportView"
+      permission="zope2.View"/>
 
 </configure>
