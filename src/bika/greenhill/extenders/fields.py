@@ -126,3 +126,7 @@ class ExtTextField(ExtensionField, public.TextField):
 
 class ExtUIDReferenceField(ExtensionField, UIDReferenceField):
     "Field extender"
+
+
+class ExtImageField(ExtensionField, public.ImageField):
+    "Field extender"

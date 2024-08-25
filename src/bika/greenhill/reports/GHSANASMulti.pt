@@ -1,5 +1,5 @@
 <tal:report
-  i18n:domain="bika.coa"
+  i18n:domain="bika.greenhill"
   define="collection view/collection;
           laboratory view/laboratory;
           coa_num view/get_coa_number;
@@ -187,14 +187,14 @@
       </div>
       <div class="accreditation-logo text-right"
           tal:define="accredited laboratory/LaboratoryAccredited;
-                      accreditation_logo laboratory/AccreditationBodyLogo;"
+                      accreditation_logo laboratory/SANASAccreditationBodyLogo;"
           tal:condition="accredited">
         <img class="img-fluid"
             tal:condition="accreditation_logo"
             tal:attributes="src accreditation_logo/absolute_url;style styles/ac_styles"/>
         <img class="img-fluid"
             tal:condition="not:accreditation_logo"
-            tal:attributes="src python:view.get_resource_url('AccreditationBodyLogo.png', prefix='bika.lims.images');style styles/ac_styles"/>
+            tal:attributes="src python:view.get_resource_url('SANASAccreditationBodyLogo.png', prefix='bika.greenhill.images');style styles/ac_styles"/>
       </div>
     </div>
   </tal:render>
