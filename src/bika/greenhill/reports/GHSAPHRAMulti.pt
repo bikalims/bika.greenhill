@@ -182,14 +182,14 @@
       </div>
       <div class="col-6 accreditation-logo text-right"
           tal:define="accredited laboratory/LaboratoryAccredited;
-                      accreditation_logo laboratory/SANASAccreditationBodyLogo;"
+                      accreditation_logo laboratory/SAPHRAAccreditationBodyLogo;"
           tal:condition="accredited">
         <img class="img-fluid" style="object-fit:contain"
             tal:condition="accreditation_logo"
             tal:attributes="src accreditation_logo/absolute_url;style styles/ac_styles"/>
         <img class="img-fluid" style="object-fit:contain"
             tal:condition="not:accreditation_logo"
-            tal:attributes="src python:view.get_resource_url('SANASAccreditationBodyLogo.png', prefix='bika.greenhill.images');style styles/ac_styles"/>
+            tal:attributes="src python:view.get_resource_url('SAPHRAAccreditationBodyLogo.png', prefix='bika.greenhill.images');style styles/ac_styles"/>
       </div>
     </div>
   </tal:render>

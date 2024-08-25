@@ -19,6 +19,13 @@
         directory="static"
     />
 
+    <plone:static
+        name="bika.greenhill.images"
+        type="plone"
+        directory="static/images"
+    />
+
+
    <include package=".controlpanel" />
 
 </configure>
