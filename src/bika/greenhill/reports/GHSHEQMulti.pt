@@ -184,7 +184,7 @@
           tal:define="accredited laboratory/LaboratoryAccredited;
                       accreditation_logo laboratory/SHEQAccreditationBodyLogo;"
           tal:condition="accredited">
-        <img class="img-fluid" style="object-fit:contain"
+        <img class="logo image-fluid" style="object-fit:contain"
             tal:condition="accreditation_logo"
             tal:attributes="src accreditation_logo/absolute_url;style styles/ac_styles"/>
         <img class="img-fluid" style="object-fit:contain"

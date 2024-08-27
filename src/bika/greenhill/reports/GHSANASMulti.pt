@@ -184,10 +184,10 @@
           tal:define="accredited laboratory/LaboratoryAccredited;
                       accreditation_logo laboratory/SANASAccreditationBodyLogo;"
           tal:condition="accredited">
-        <img class="img-fluid" style="object-fit:contain"
+        <img class="logo image-fluid" style="object-fit:contain"
             tal:condition="accreditation_logo"
             tal:attributes="src accreditation_logo/absolute_url;style styles/ac_styles"/>
-        <img class="img-fluid" style="object-fit:contain"
+        <img class="logo image-fluid" style="object-fit:contain"
             tal:condition="not:accreditation_logo"
             tal:attributes="src python:view.get_resource_url('SANASAccreditationBodyLogo.png', prefix='bika.greenhill.images');style styles/ac_styles"/>
       </div>
