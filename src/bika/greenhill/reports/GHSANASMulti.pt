@@ -186,10 +186,10 @@
           tal:condition="accredited">
         <img class="logo image-fluid" style="object-fit:contain"
             tal:condition="accreditation_logo"
-            tal:attributes="src accreditation_logo/absolute_url;style styles/ac_styles"/>
+            tal:attributes="src accreditation_logo/absolute_url;style styles/logo_styles"/>
         <img class="logo image-fluid" style="object-fit:contain"
             tal:condition="not:accreditation_logo"
-            tal:attributes="src python:view.get_resource_url('SANASAccreditationBodyLogo.png', prefix='bika.greenhill.images');style styles/ac_styles"/>
+            tal:attributes="src python:view.get_resource_url('SANASAccreditationBodyLogo.png', prefix='bika.greenhill.images');style styles/logo_styles"/>
       </div>
     </div>
   </tal:render>
