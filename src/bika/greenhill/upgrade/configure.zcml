@@ -11,4 +11,12 @@
      handler="bika.greenhill.upgrade.v01_00_001.convert_attachment_report_options"
      profile="bika.greenhill:default"/>
 
+ <genericsetup:upgradeStep
+     title="Upgrade to BIKA.GREENHILL 1.0.1"
+     description="Changes Sample Type(New Swab) on a Sample to Swab"
+     source="1.0.1"
+     destination="1.0.2"
+     handler="bika.greenhill.upgrade.v01_00_002.replace_swab_sample_type"
+     profile="bika.greenhill:default"/>
+
 </configure>
