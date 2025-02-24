@@ -74,6 +74,8 @@ def replace_swab_sample_type(tool):
 
         if obj.getSampleTypeTitle() == "NewSwab":
             obj.setSampleType(sample_type)
+        if obj.getSampleTypeTitle() == "Air Plate":
+            obj.setSampleType(sample_type)
 
         # Flush the object from memory
         obj._p_deactivate()
